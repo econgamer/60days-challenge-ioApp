@@ -1,0 +1,91 @@
+<html>
+<head>
+  <title>IO CHAT</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="index.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <header>
+
+  </header>
+
+  <div class="container">
+    <div id="userFormArea" class="row">
+      <div class="col-md-12">
+
+        <form id="userForm">
+          <div class="form-group">
+
+            <input type="text" class="form-control" id="username" autofocus value="Micro"></input>
+            <br />
+            <input type="submit" class="" value="Create Project"/>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+
+
+    <div id="messageArea">
+      <div>
+
+
+      <div class="">
+        <div class="words">
+          <h3>New Project - </h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis ligula malesuada, mollis est eu, placerat eros. Nullam mi lacus, euismod quis enim vitae, tristique condimentum ex. Nullam et eros nisi. Sed volutpat hendrerit felis, eget tempor enim vestibulum ultrices. Aliquam consequat, ligula id porta aliquet, odio lorem sodales libero, a imperdiet ex leo a nunc. Nunc vel feugiat tellus. Donec tristique felis quis elit scelerisque, eu vehicula neque imperdiet.
+
+Ut quis ultricies ligula. Vestibulum consectetur posuere posuere. Donec tristique quis dolor id venenatis. Curabitur condimentum dui quis sollicitudin tincidunt. Quisque sodales lorem eu odio porttitor commodo. Sed accumsan nulla a auctor vestibulum. Integer sapien magna, congue ut laoreet id, iaculis eu urna. Aliquam condimentum urna at vulputate rutrum. Aliquam eget lorem a ante rhoncus pulvinar eget id metus.
+<br/>
+<br/>
+
+Fusce eu finibus turpis, in commodo enim. Sed nec malesuada ex, vitae pellentesque neque. Integer ullamcorper a ligula iaculis tincidunt. Nunc feugiat gravida lorem at imperdiet. Pellentesque auctor vitae erat a faucibus. Sed ac eros at sapien ullamcorper rhoncus. Donec tempor sit amet tellus quis iaculis. Fusce suscipit, elit eget facilisis luctus, tortor neque hendrerit enim, nec feugiat nulla quam at quam. Nulla at ligula sodales, rutrum dolor quis, facilisis velit. Integer ante velit, iaculis in tellus dictum, cursus finibus elit. Nullam tellus sapien, iaculis eu tempor quis, vulputate sed dui. Vestibulum eu bibendum tellus, et tempor lacus. Maecenas ut mollis mi. Sed nisi nulla, vestibulum et metus ullamcorper, ultrices gravida dolor. Mauris ornare vehicula ullamcorper.
+<br/>
+<br/>
+
+Mauris condimentum in mauris et gravida. Integer euismod ornare tristique. Donec magna sapien, sodales scelerisque aliquam vel, volutpat ut arcu. Maecenas ut volutpat eros. Morbi pellentesque ante et eros rutrum, id iaculis ligula varius. Quisque lobortis magna eget ultrices posuere. Nunc libero nunc, aliquet id accumsan sed, vehicula sed est. Vestibulum commodo ligula varius, malesuada est vitae, suscipit mi. Sed dui elit, volutpat ut rutrum in, vehicula sed neque. Mauris hendrerit ligula in tincidunt luctus. Praesent maximus id nulla et condimentum.
+<br/>
+<br/>
+
+Fusce pellentesque quis justo porttitor cursus. Cras vel nunc metus. Nunc eget sem odio. Cras id lacus viverra eros faucibus viverra. Quisque arcu quam, placerat id sem nec, pellentesque consequat urna. Sed tincidunt tempor quam, et consectetur est facilisis non. Ut rhoncus orci et libero aliquet, eu blandit orci consequat. Mauris augue est, tempus vitae nibh eu, faucibus maximus turpis. Duis ornare commodo nisl quis fermentum. Phasellus tristique euismod scelerisque. Sed pellentesque neque diam, quis rutrum arcu condimentum ut. Vestibulum quis fermentum diam, in vestibulum augue. Curabitur fringilla eleifend nulla a vehicula. Vivamus erat sapien, facilisis eu pharetra id, auctor fermentum dolor.</p>
+          <p class="list-group" id="users"></p>
+        </div>
+
+      </div>
+      <div class="">
+        <div class="chat" id="chat">
+
+        </div>
+
+        <form id="messageForm">
+          <div class="form-group">
+
+            <textarea class="" id="message" autofocus></textarea>
+            <br />
+            <!-- <input type="submit" class="btn btn-primary" value="Send Message"/> -->
+          </div>
+        </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+
+  </script>
+
+</body>
+</html>

@@ -8,7 +8,7 @@ const publicPath = path.join(__dirname, '../public');
 const port = process.env.PORT || 3000;
 var app = express();
 var server = http.createServer(app);
-var io = socketIO(server);
+var io = socketIO(server);              //youtube: require('socket.io').listen(server)
 
 var playerNum = 0;
 
@@ -37,32 +37,58 @@ io.on('connection', (socket) => {
   });
 
 
-  // socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
-  //
-  // socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
-  //
-  //
-  // socket.on('createMessage', (message, callback) => {
-  //   console.log('newMessage received', message);
-  //
-  //   io.emit('newMessage', generateMessage(message.from, message.text));
-  //   callback('This is from the server');
+});
+
+//day 19
+
+var users = [];
+var connections = [];
+
+app.get('/day29', function(req, res){
+  console.log('hihi');
+  // res.sendFile(__dirname + '/index.html');
+  res.sendFile('index.html');
+
+});
+
+io.sockets.on('connection', (socket) => {
+  connections.push(socket);
+  console.log(`Chat app connected ${connections.length}`);
 
 
-    // the user who sent will not receive the message
-    // socket.broadcast.emit('newMessage', {
-    //   from: message.from,
-    //   text: message.text,
-    //   createAt: new Date().getTime()
-    // });
+  // Disconnect
+  socket.on('disconnect', (data)=> {
+    // if(!sockets.username) return;
+    users.splice(users.indexOf(socket.username), 1);
+    updateUsername();
+    connections.splice(connections.indexOf(socket), 1);
+    console.log(`Disconnected: Users left ${connections.length}`);
+  });
 
-  // });
+  //Send message handler
+  socket.on('sendMessage', (data) => {
+    console.log(data);
+    io.sockets.emit('newMessage', {msg: data, user: socket.username});
+  });
+
+  // User registrate handler
+  socket.on('createUser', (data, callback) => {
+    callback(true);
+    socket.username = data;
+    users.push(socket.username);
+    updateUsername();
+
+  });
 
 
+  function updateUsername(){
+    socket.emit('getUsers', users);
+  }
 
 
 
 });
+
 
 
 
