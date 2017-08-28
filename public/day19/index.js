@@ -59,11 +59,11 @@ $( document ).ready(function() {
   });
 
   socket.on('getUsers', function(data){
+    console.log('push user');
     var html = '';
     for(i = 0; i < data.length; i++){
       html += `<li>${data[i]}</li>` ;
     }
-
     $users.html(html);
   });
 

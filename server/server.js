@@ -82,7 +82,7 @@ io.sockets.on('connection', (socket) => {
 
 
   function updateUsername(){
-    socket.emit('getUsers', users);
+    io.sockets.emit('getUsers', users);     //error before sockets.emit, it should be io.sockets in order to send message to all
   }
 
 
