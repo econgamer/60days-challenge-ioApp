@@ -1,0 +1,108 @@
+html, body{
+  font-family: 'Boogaloo', cursive;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.intro{
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  background-image: url('batman.jpg');
+  display:table;
+  top: 0;
+  background-size: cover;
+  background-position:center;
+}
+
+.intro .inner{
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  max-width: none;
+}
+
+.content{
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 100px;
+}
+
+.content h1{
+  padding: 0;
+  margin: 0;
+}
+
+.btn{
+  margin-top: 4px;
+  font-family: 'Bangers', cursive;
+  color: #000000;
+  padding: 5px;
+  border: solid #000000;
+  background: none;
+}
+
+#i1{
+  margin-left: 3px;
+  padding: 3px;
+  background-color: #000000;
+  color: #ffffff;
+  outline: none;
+  border: none;
+}
+
+#i2{
+  background-color: #000000;
+  padding: 3px;
+  color: #ffffff;
+  outline: none;
+  border: none;
+}
+
+
+
+/*Register*/
+.intro2{
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  background-image: url('batman-register.png');
+  display:table;
+  top: 0;
+  background-size: cover;
+  background-position:center;
+}
+
+
+/*index*/
+.intro3{
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  display:table;
+  top: 0;
+  background-size: cover;
+  background-position:center;
+}
+
+.intro3 .inner1{
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  max-width: none;
+}
+
+.content1{
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 100px;
+}
+
+#superWord{
+  font-size: 70px;
+}

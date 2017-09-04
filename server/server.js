@@ -58,7 +58,7 @@ io.sockets.on('connection', (socket) => {
 
   // Disconnect
   socket.on('disconnect', (data)=> {
-    // if(!sockets.username) return;
+    if(!socket.username) return;
     users.splice(users.indexOf(socket.username), 1);
     updateUsername();
     connections.splice(connections.indexOf(socket), 1);
@@ -88,6 +88,59 @@ io.sockets.on('connection', (socket) => {
 
 
 });
+
+// End of day 19
+
+// day 26
+var musicPlayer = [];
+var connectionsPiano = [];
+var playerType = [];
+
+
+io.sockets.on('connection', (socket) => {
+  connections.push(socket);
+  console.log(`Piano app connected ${connections.length}`);
+
+
+  // Disconnect
+  socket.on('disconnect', (data)=> {
+    if(!socket.playername) return;
+    musicPlayer.splice(musicPlayer.indexOf(socket.playername), 1);
+    playerType.splice(playerType.indexOf(socket.instrument), 1);
+    updatePlayername();
+    connections.splice(connections.indexOf(socket), 1);
+    console.log(`Disconnected: Users left ${connections.length}`);
+  });
+
+  //Send message handler
+  socket.on('sendNote', (data) => {
+    console.log(data);
+    // io.sockets.emit('newNote', {msg: data, user: socket.playername});
+    socket.broadcast.emit('newNote', {note: data, user: socket.playername, instrument: socket.instrument});
+  });
+
+  // User registrate handler
+  socket.on('createPlayer', (data, callback) => {
+    console.log("Piano player", data.username);
+    callback(true);
+    socket.playername = data.username;
+    socket.instrument = data.instrument;
+    musicPlayer.push(socket.playername);
+    playerType.push(socket.instrument);
+    updatePlayername();
+
+  });
+
+
+  function updatePlayername(){
+    io.sockets.emit('getPlayers', {musicPlayer: musicPlayer, instrumentPlayerUsed: playerType});     //error before sockets.emit, it should be io.sockets in order to send message to all
+  }
+
+
+
+});
+// End of day 26
+
 
 
 
