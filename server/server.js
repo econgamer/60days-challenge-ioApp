@@ -136,10 +136,94 @@ io.sockets.on('connection', (socket) => {
     io.sockets.emit('getPlayers', {musicPlayer: musicPlayer, instrumentPlayerUsed: playerType});     //error before sockets.emit, it should be io.sockets in order to send message to all
   }
 
-
-
 });
 // End of day 26
+
+// day 27
+
+var worldPlayer = [];
+var playerPositionX = [];
+var playerPositionY = [];
+var connectionsPlayers = [];
+var animalType = [];
+
+
+io.sockets.on('connection', (socket) => {
+  connectionsPlayers.push(socket);
+  console.log(`World io connected ${connectionsPlayers.length}`);
+
+
+  // Disconnect
+  socket.on('disconnect', (data)=> {
+    if(!socket.playername) return;
+    worldPlayer.splice(worldPlayer.indexOf(socket.playername), 1);
+    playerPositionX.splice(playerPositionX.indexOf(socket.playername), 1);
+    playerPositionY.splice(playerPositionY.indexOf(socket.playername), 1);
+    animalType.splice(animalType.indexOf(socket.playertype), 1);
+    updateworldPlayername();
+    connectionsPlayers.splice(connectionsPlayers.indexOf(socket), 1);
+    console.log(`Disconnected: Users left ${connectionsPlayers.length}`);
+  });
+
+  //Send message handler
+  socket.on('sendPlayerMessage', (data) => {
+    console.log(data);
+    // io.sockets.emit('newNote', {msg: data, user: socket.playername});
+    // socket.broadcast.emit
+
+    io.sockets.emit('newMessage', {msg: data,
+                                        user: socket.playername,
+                                        playerType: socket.playertype,
+                                        posX: socket.playerX,
+                                        posY: socket.playerY
+
+                                      });
+  });
+
+  // User registrate handler
+  socket.on('createworldPlayer', (data, callback) => {
+    console.log("World player created", data.playername);
+    callback(true);
+    socket.playername = data.playername;
+    socket.playertype = data.playertype;
+    socket.playerX = data.playerX;
+    socket.playerY = data.playerY;
+    worldPlayer.push(socket.playername);
+    animalType.push(socket.playertype);
+    playerPositionX.push(socket.playerX);
+    playerPositionY.push(socket.playerY);
+    updateworldPlayername();
+  });
+
+  //Update game status
+  socket.on('updatePlayerStatus', (data) => {
+
+    socket.playername = data.playername;
+    socket.playertype = data.playertype;
+    socket.playerX = data.playerX;
+    socket.playerY = data.playerY;
+
+    //index of
+    var playerId = worldPlayer.indexOf(socket.playername);
+
+    animalType[playerId] = socket.playertype;
+    playerPositionX[playerId] = socket.playerX;
+    playerPositionY[playerId] = socket.playerY;
+    updateworldPlayername();
+  });
+
+
+  function updateworldPlayername(){
+    io.sockets.emit('getworldPlayers', {worldPlayer, animalType, playerPositionX, playerPositionY});     //error before sockets.emit, it should be io.sockets in order to send message to all
+  }
+
+});
+
+
+
+
+// End of day 27
+
 
 
 

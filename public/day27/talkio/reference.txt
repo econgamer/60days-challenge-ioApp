@@ -1,0 +1,49 @@
+//Enemies setup
+//enemy-rock
+// for(var i = 0; i < enemyFirstwave; i ++){
+//   enemyx = width + (Math.random(1) * 500 );
+//   enemyy = 0;
+//
+//   enemies[i] = new Enemy(enemyx, enemyy + (i * 3));
+//   // console.log('create');
+// }
+
+
+// for(var i = 0; i < enemyAmount; i ++){
+//   enemyx = width + (Math.random(1) * 500 );
+//   enemyy = 0;
+//
+//   enemies[i] = new Enemy(enemyx, enemyy + (i * 10));
+// }
+
+//enemy-ship
+// for(var z = 0; z < enemyShipAmount; z ++){
+//   enemyShipx = width - (Math.random(50) * 100 ) + 300;
+//   enemyShipy = 0 + 10 + (Math.random() * 5 );
+//
+//   enemyShip[z] = new EnemyShip(enemyShipx, enemyShipy + (z * 50));
+//
+// }
+
+
+
+
+// for(var e = 0; e < enemies.length; e ++){
+//   if(player.hits(enemies[e])){
+//     background('rgba(253,173,173, 0.25)');
+//   }
+// }
+
+
+
+
+//enemy
+// for(var e = 0; e < enemies.length; e ++){
+//   enemies[e].show();
+//   enemies[e].move();
+// }
+
+// for(var e = 0; e < enemyShip.length; e ++){
+//   enemyShip[e].show();
+//   enemyShip[e].move();
+// }
