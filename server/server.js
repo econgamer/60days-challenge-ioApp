@@ -290,7 +290,7 @@ io.sockets.on('connection', (socket) => {
     customer.push(data);
     // Store customer Information
     const customerInformation = new Customer({ name: data.name, phone: data.phone, tableNum: data.tableNum, time: data.time});
-      customerInformation.save().then(() => {
+      customerInformation.save().then((data) => {
           console.log('Customer information stored');
           io.sockets.emit('bookStatus', {data});
           getAllCustomer();

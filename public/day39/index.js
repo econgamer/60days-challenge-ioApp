@@ -13,7 +13,7 @@ $( document ).ready(function() {
   var $tableNum = $('#tableNum');
   var $time = $('#time');
   var $tableType = $('#tableType');
-
+  var $output = $('#output');
 
   var bookingList = [];
 
@@ -59,7 +59,16 @@ $( document ).ready(function() {
   // });
 
   socket.on('bookStatus', function(data){
+    console.log(data);
+    $output.html(`Thanks for the booking <br /> Your booking is confirmed as below: <br />
 
+
+      name: ${data.data.name}<br />
+      table: ${data.data.tableNum}<br />
+      time: ${data.data.time}:00
+
+
+    `)
     // bookingList.push(data);
     //
     // console.log(bookingList);
