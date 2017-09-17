@@ -1,0 +1,89 @@
+<html>
+<head>
+  <title>IO CHAT</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="index.js"></script>
+    <link rel="stylesheet" type="text/css" href="style2.css">
+
+</head>
+<body>
+  <header>
+
+  </header>
+
+
+  <canvas id="myCanvas" width="500" height="500" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.
+  </canvas>
+
+
+
+
+
+    <div class="formStyle" id="customerArea">
+
+        <form id="customerForm">
+
+          <div class="form-group">
+            <label>Name:</label>
+            <br />
+            <input id="name" type="text" name="name" value=""/>
+          </div>
+
+          <div class="form-group">
+            <label>Phone Number:</label>
+            <br />
+            <input id="phone" type="text" name="phone" value=""/>
+          </div>
+
+          <div class="form-group">
+            <label>Table Number:</label>
+            <br />
+            <input id="tableNum" type="text" name="tableNum" value=""/>
+          </div>
+
+          <div class="form-group">
+            <label>Table:</label>
+            <span id="tableType"></span>
+          </div>
+
+
+
+
+            <!-- <label>Time:</label>
+            <input id="time" type="text" name="time" value=""/>
+            <br /> -->
+            <label>Time: </label>
+            <select id="time" name="time">
+
+            </select>
+            <br/>
+
+
+
+
+
+            <input type="submit" class="btn btn-primary" value="Send Message"/>
+          </div>
+        </form>
+
+
+
+  </div>
+
+
+
+  <script>
+
+  </script>
+
+</body>
+</html>

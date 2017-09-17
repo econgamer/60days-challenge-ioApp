@@ -3,12 +3,25 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 
+const mongoose = require('mongoose');
+
 const {generateMessage} = require('./utils/message');
 const publicPath = path.join(__dirname, '../public');
 const port = process.env.PORT || 3000;
 var app = express();
 var server = http.createServer(app);
 var io = socketIO(server);              //youtube: require('socket.io').listen(server)
+
+
+var connectionUrl = 'mongodb://admin:admin@ds155091.mlab.com:55091/databasetesting';
+
+mongoose.connect(connectionUrl);
+mongoose.connection.once('open', () => console.log('Database is ready!'))
+                    .on('error', (error) => {
+                      console.warn('Warning, error');
+                    });
+
+
 
 var playerNum = 0;
 
@@ -220,9 +233,113 @@ io.sockets.on('connection', (socket) => {
 });
 
 
-
-
 // End of day 27
+
+
+// Day 39
+
+var customer = [];
+var customerNum = [];
+
+
+const Customer = require('../public/day39/customer');
+
+app.get('/day39', function(req, res){
+  // res.sendFile(__dirname + '/index.html');
+  res.sendFile('index.html');
+
+});
+
+io.sockets.on('connection', (socket) => {
+  customerNum.push(socket);
+  console.log(`Chat app connected ${customerNum.length}`);
+
+  getAllCustomer();
+
+  // app
+  function getAllCustomer(){
+    Customer.find({}).exec(function(err, data){
+      if(err){
+        console.log('Error occur when retrieving customer data from database');
+      }
+
+        console.log(data);
+        updateCustomer(data);
+
+
+    });
+  }
+
+
+
+
+
+  // Disconnect
+  socket.on('disconnect', (data)=> {
+    if(!socket.username) return;
+    customer.splice(customer.indexOf(socket.username), 1);
+    updateUsername();
+    customerNum.splice(customerNum.indexOf(socket), 1);
+    console.log(`Disconnected: Users left ${customerNum.length}`);
+  });
+
+  //Send Information handler
+  socket.on('sendInformation', (data) => {
+    console.log(data);
+
+    customer.push(data);
+    // Store customer Information
+    const customerInformation = new Customer({ name: data.name, phone: data.phone, tableNum: data.tableNum, time: data.time});
+      customerInformation.save().then(() => {
+          console.log('Customer information stored');
+          io.sockets.emit('bookStatus', {data});
+          getAllCustomer();
+          updateCustomer();
+        }, (err) => {
+          console.log('Customer information failed to stored');
+        });
+
+
+    //io.sockets.emit('newCustomer', {msg: data, user: socket.username});
+
+  });
+
+  // User registrate handler
+  socket.on('createUser', (data, callback) => {
+    callback(true);
+    socket.username = data;
+    customer.push(socket.username);
+    updateUsername();
+
+  });
+
+
+  function updateCustomer(data){
+    io.sockets.emit('getStatus', data);     //error before sockets.emit, it should be io.sockets in order to send message to all
+  }
+
+
+
+});
+
+
+
+
+
+
+
+
+
+// End of Day39
+
+
+
+
+
+
+
+
+
 
 
 
