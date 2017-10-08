@@ -278,7 +278,7 @@ io.sockets.on('connection', (socket) => {
   socket.on('disconnect', (data)=> {
     if(!socket.username) return;
     customer.splice(customer.indexOf(socket.username), 1);
-    updateUsername();
+    // updateUsername();
     customerNum.splice(customerNum.indexOf(socket), 1);
     console.log(`Disconnected: Users left ${customerNum.length}`);
   });
@@ -309,7 +309,7 @@ io.sockets.on('connection', (socket) => {
     callback(true);
     socket.username = data;
     customer.push(socket.username);
-    updateUsername();
+    // updateUsername();
 
   });
 
