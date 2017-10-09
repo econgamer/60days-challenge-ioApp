@@ -41,16 +41,7 @@ $( document ).ready(function() {
   socket.on('getStatus', function(data){
     bookingList = data;
 
-    // for(var i = 0; i < bookingList.length; i++){
-    //
-    //   if(bookingList[i].tableNum === 12){
-    //     console.log('booked');
-    //
-    //   }
-    // }
 
-
-    console.log(bookingList);
 
   });
 
@@ -59,7 +50,7 @@ $( document ).ready(function() {
   // });
 
   socket.on('bookStatus', function(data){
-    console.log(data);
+
     $output.html(`Thanks for the booking <br /> Your booking is confirmed as below: <br />
 
 
@@ -69,14 +60,12 @@ $( document ).ready(function() {
 
 
     `)
-    // bookingList.push(data);
-    //
-    // console.log(bookingList);
+
   });
 
 
   socket.on('getUsers', function(data){
-    console.log('push user');
+
     var html = '';
     for(i = 0; i < data.length; i++){
       html += `<li>${data[i]}</li>` ;
@@ -115,12 +104,11 @@ $( document ).ready(function() {
 // Add event listener for `click` events.
 elem.addEventListener('click', function(event) {
 
-  console.log('Book List after click: ' , bookingList);
 
     $time.html('');
     var x = event.pageX - elemLeft,
         y = event.pageY - elemTop;
-    console.log(x, y);
+
     elements.forEach(function(element) {
         if (y > element.top && y < element.top + element.height && x > element.left && x < element.left + element.width) {
             $tableNum.val(element.name);
@@ -133,10 +121,10 @@ elem.addEventListener('click', function(event) {
 
 
             for(var t = 0; t < bookingList.length; t++){
-              console.log('bookingList.length: ', bookingList.length);
+
 
               if(bookingList[t].tableNum == tableNumberSelected.toString()){
-                console.log('The table has been booked at ' + bookingList[t].time);
+
 
 
                 var i = availableTime.indexOf(bookingList[t].time);
@@ -154,14 +142,12 @@ elem.addEventListener('click', function(event) {
 
 
             for(var len = 0; len < availableTime.length; len++){
-              console.log(availableTime);
+
 
               $time.append(`<option value='${availableTime[len]}'>${availableTime[len]} : 00</option>`);
             }
 
 
-
-            console.log(availableTime);
 
 
 

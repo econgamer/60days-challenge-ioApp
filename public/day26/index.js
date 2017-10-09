@@ -21,7 +21,7 @@ $( document ).ready(function() {
 
     $('body').bind('keypress', function(e) {
       keyCodePressed = String.fromCharCode(e.keyCode).toLowerCase();
-      console.log(keyCodePressed);
+
 
       if(canPlay){
         keyPressHandler(keyCodePressed, myinstrument);
@@ -32,15 +32,14 @@ $( document ).ready(function() {
 
 
   socket.on('newNote', function(data){
-    console.log(`Note received : ${data.note} by ${data.user} using ${data.instrument}`);
+
 
     keyPressHandler(data.note, data.instrument);
   });
 
   function keyPressHandler(keyCodePressed, instrumentUsed){
 
-    console.log(instrumentUsed);
-    console.log(keyCodePressed);
+
 
     if(instrumentUsed === 'drum'){
 
@@ -83,7 +82,7 @@ $( document ).ready(function() {
 
     if(instrumentUsed === 'beep'){
 
-      console.log('beep running');
+
       if(keyCodePressed === 'q'){
         var sound = new Howl({
           src: ['beep/beep1.mp3']
@@ -144,7 +143,7 @@ $( document ).ready(function() {
 
     if(instrumentUsed === 'piano'){
 
-      console.log('pano running');
+
       if(keyCodePressed === 'q'){
         var sound = new Howl({
           src: ['piano/A3.mp3']
@@ -230,7 +229,7 @@ $( document ).ready(function() {
   });
 
   socket.on('getPlayers', function(data){
-    console.log('push player');
+
     var pianohtml = '';
     var drumhtml = '';
     var beephtml = '';
@@ -255,7 +254,7 @@ $( document ).ready(function() {
     }
 
 
-    console.log(data);
+
 
 
     $pianist.html(pianohtml);
