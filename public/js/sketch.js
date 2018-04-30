@@ -7,8 +7,8 @@ var lastLoopTime = 0;
 var socket = io();
 
 socket.on('connect', function() {
-  var initialX = (Math.random() * width/2 + 100);
-  var initialY = (Math.random() * height/2 + 100);
+  var initialX = (Math.random() * 900/2 + 100);
+  var initialY = (Math.random() * 900/2 + 100);
   player = new Player(initialX,initialY);
   //console.log(initialX, initialY);
 
@@ -42,6 +42,15 @@ socket.on('removePlayer', function(data){
 
 socket.on('disconnect', function() {
   console.log('Disconnected from server');
+});
+
+socket.on('moveToLeft', function() {
+  console.log("Move to the left!!!!");
+  player.move(-5, 'horizontal');
+
+  socket.emit('playerState', {
+    player: player
+  });
 });
 
 //
@@ -81,7 +90,10 @@ function draw(){
 
   // if(new Date().getTime() -  lastLoopTime> 20){
 
-    playerMovement();
+  var c = color(255, 204, 0); // Define color 'c'
+  fill(c); // Use color variable 'c' as fill color
+  playerMovement();
+  ellipse(56, 46, 55, 55);
   //   lastLoopTime = new Date().getTime();
   // }
   //
@@ -102,6 +114,8 @@ function draw(){
       }
     }
 }
+
+
 
 function playerMovement(){
 
