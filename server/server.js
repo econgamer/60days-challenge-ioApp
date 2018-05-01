@@ -47,8 +47,19 @@ io.on('connection', (socket) => {
 
   app.post('/sharing', function(req, res){
 
-    socket.broadcast.emit('moveToLeft');
-    console.log("Shgarignsdkljfsds");
+    console.log("req.body.move: ", req.body);
+
+    if(req.body.move === 'left'){
+      socket.broadcast.emit('moveToLeft');
+    }else if(req.body.move === 'right'){
+      socket.broadcast.emit('moveToRight');
+    }else if(req.body.move === 'up'){
+      socket.broadcast.emit('moveUp');
+    }else if(req.body.move === 'down'){
+      socket.broadcast.emit('moveDown');
+    }
+
+
   });
 
 
