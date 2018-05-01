@@ -107,6 +107,31 @@ function draw(){
   if(player){
     player.show();
     player.move();
+
+    if (player.x < 127 && player.x + 20 > 100 &&
+      player.y > 73 && player.y - 20 < 100){
+        textSize(32);
+        text('Win!!!!!!!!!!!', 250, 250);
+    }
+
+    if (player.x < 227 && player.x + 20 > 200 &&
+      player.y > 173 && player.y - 20 < 200){
+        textSize(32);
+        text('Game Over!!!!!!!!!!!', 250, 250);
+    }
+
+    if (player.x < 127 && player.x + 20 > 100 &&
+      player.y > 173 && player.y - 20 < 200){
+        textSize(32);
+        text('Game Over!!!!!!!!!!!', 250, 250);
+    }
+
+    if (player.x < 227 && player.x + 20 > 200 &&
+      player.y > 73 && player.y - 20 < 100){
+        textSize(32);
+        text('Game Over!!!!!!!!!!!', 250, 250);
+    }
+
   }
 
 
@@ -128,29 +153,7 @@ function draw(){
   // }
   //
 
-  if (player.x < 127 && player.x + 20 > 100 &&
-    player.y > 73 && player.y - 20 < 100){
-      textSize(32);
-      text('Win!!!!!!!!!!!', 250, 250);
-  }
 
-  if (player.x < 227 && player.x + 20 > 200 &&
-    player.y > 173 && player.y - 20 < 200){
-      textSize(32);
-      text('Game Over!!!!!!!!!!!', 250, 250);
-  }
-
-  if (player.x < 127 && player.x + 20 > 100 &&
-    player.y > 173 && player.y - 20 < 200){
-      textSize(32);
-      text('Game Over!!!!!!!!!!!', 250, 250);
-  }
-
-  if (player.x < 227 && player.x + 20 > 200 &&
-    player.y > 73 && player.y - 20 < 100){
-      textSize(32);
-      text('Game Over!!!!!!!!!!!', 250, 250);
-  }
 
 
 
