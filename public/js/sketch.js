@@ -7,8 +7,8 @@ var lastLoopTime = 0;
 var socket = io();
 
 socket.on('connect', function() {
-  var initialX = (Math.random() * width/2 + 100);
-  var initialY = (Math.random() * height/2 + 100);
+  var initialX = (Math.random() * 900/2 + 100);
+  var initialY = (Math.random() * 900/2 + 100);
   player = new Player(initialX,initialY);
   //console.log(initialX, initialY);
 
@@ -42,6 +42,38 @@ socket.on('removePlayer', function(data){
 
 socket.on('disconnect', function() {
   console.log('Disconnected from server');
+});
+
+socket.on('moveToLeft', function() {
+  player.move(-5, 'horizontal');
+
+  socket.emit('playerState', {
+    player: player
+  });
+});
+
+socket.on('moveToRight', function() {
+  player.move(5, 'horizontal');
+
+  socket.emit('playerState', {
+    player: player
+  });
+});
+
+socket.on('moveUp', function() {
+  player.move(-5, 'vertical');
+
+  socket.emit('playerState', {
+    player: player
+  });
+});
+
+socket.on('moveDown', function() {
+  player.move(5, 'vertical');
+
+  socket.emit('playerState', {
+    player: player
+  });
 });
 
 //
@@ -81,12 +113,44 @@ function draw(){
 
   // if(new Date().getTime() -  lastLoopTime> 20){
 
-    playerMovement();
+  var c = color(255, 204, 0);
+  fill(c);
+  playerMovement();
+  rect(100, 100, 55, 55);
+
+  var c = color(206, 0, 0);
+  fill(c);
+  rect(200, 200, 55, 55);
+  rect(100, 200, 55, 55);
+  rect(200, 100, 55, 55);
+
   //   lastLoopTime = new Date().getTime();
   // }
   //
 
+  if (player.x < 127 && player.x + 20 > 100 &&
+    player.y > 73 && player.y - 20 < 100){
+      textSize(32);
+      text('Win!!!!!!!!!!!', 250, 250);
+  }
 
+  if (player.x < 227 && player.x + 20 > 200 &&
+    player.y > 173 && player.y - 20 < 200){
+      textSize(32);
+      text('Game Over!!!!!!!!!!!', 250, 250);
+  }
+
+  if (player.x < 127 && player.x + 20 > 100 &&
+    player.y > 173 && player.y - 20 < 200){
+      textSize(32);
+      text('Game Over!!!!!!!!!!!', 250, 250);
+  }
+
+  if (player.x < 227 && player.x + 20 > 200 &&
+    player.y > 73 && player.y - 20 < 100){
+      textSize(32);
+      text('Game Over!!!!!!!!!!!', 250, 250);
+  }
 
 
 
@@ -102,6 +166,8 @@ function draw(){
       }
     }
 }
+
+
 
 function playerMovement(){
 
