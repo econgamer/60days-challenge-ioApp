@@ -3,15 +3,22 @@ var players= [];
 var playersId = [];
 var update = true;
 var lastLoopTime = 0;
+var connectCounter = 0;
 
 var socket = io();
 
-socket.on('connect', function() {
+socket.on('connect', function(data) {
+  console.log("Connect data!!!!:   ", data);
   var initialX = (Math.random() * 900/2 + 100);
   var initialY = (Math.random() * 900/2 + 100);
   player = new Player(initialX,initialY);
   //console.log(initialX, initialY);
 
+  console.log("New player created!!!!!!!!!!!!!!!!!!!!");
+
+  connectCounter++;
+
+  console.log("connectCounter: ", connectCounter);
 
   socket.emit('playerState', {
     player: player

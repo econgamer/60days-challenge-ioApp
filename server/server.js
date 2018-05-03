@@ -28,6 +28,8 @@ mongoose.connection.once('open', () => console.log('Database is ready!'))
 
 var playerNum = 0;
 
+var connectCounter = 0;
+
 // app init
 app.use(express.static(publicPath));
 
@@ -41,6 +43,14 @@ app.use(express.urlencoded()); // to support URL-encoded bodies
 
 
 io.on('connection', (socket) => {
+
+
+
+  connectCounter++;
+
+  console.log("Player connect!!!!!!!!!", connectCounter);
+
+
   data = {x:50, y:50};
   //console.log('New user connected');
   //console.log('Socket id: ', socket.id);
@@ -65,8 +75,6 @@ io.on('connection', (socket) => {
 
   socket.on('playerState', (data) => {
     ////console.log('Player',  data);
-
-
     socket.broadcast.emit('playersPosition', {
       data: data,
       id: socket.id
